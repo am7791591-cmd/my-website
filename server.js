@@ -296,16 +296,21 @@ function serveStatic(req, res, pathname) {
 }
 
 const server = http.createServer(async (req, res) => {
-  const url = new URL(req.url, `http://${req.headers.host}`);
-  try {
+    const url = new URL(req.url, `http://${req.headers.host}`);
+    
+    // 1. Agar request API ki hai
     if (url.pathname.startsWith("/api/")) {
-      await handleApi(req, res, url.pathname);
-      return;
+        await handleApi(req, res, url.pathname);
+        return;
     }
-    serveStatic(req, res, url.pathname);
-  } catch (error) {
-    sendJson(res, 500, { error: error.message || "Server error" });
-  }
+    
+    // 2. Static files aur frontend routing ka hal
+    let requestedPath = url.pathname;
+    if (requestedPath === "/" || !requestedPath.includes(".")) {
+        requestedPath = "/index.html";
+    }
+    
+    serveStatic(req, res, requestedPath);
 });
 server.listen(PORT, () => {
   console.log(`Madani Education Portal running at http://localhost:${PORT}`);
