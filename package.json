@@ -1,0 +1,18 @@
+{
+  "name": "madani-education-portal",
+  "version": "1.0.0",
+  "description": "Teacher, student, attendance, and fee portal for an education organization.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "education",
+    "teacher-portal",
+    "fee-management",
+    "attendance"
+  ],
+  "author": "",
+  "license": "MIT"
+}

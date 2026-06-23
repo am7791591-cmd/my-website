@@ -1,0 +1,216 @@
+{
+  "organization": {
+    "name": "Dawat-e-Islami Education Portal",
+    "branch": "Madani Learning Center",
+    "city": "Karachi",
+    "contact": "+92 300 0000000"
+  },
+  "users": [
+    {
+      "id": "u-admin",
+      "name": "Organization Admin",
+      "email": "admin@portal.test",
+      "password": "admin123",
+      "role": "admin"
+    },
+    {
+      "id": "u-fee",
+      "name": "Fee Officer",
+      "email": "fee@portal.test",
+      "password": "fee123",
+      "role": "fee"
+    },
+    {
+      "id": "u-teacher-1",
+      "name": "Muallim Abdul Hadi",
+      "email": "teacher@portal.test",
+      "password": "teacher123",
+      "role": "teacher",
+      "teacherId": "t-1"
+    }
+  ],
+  "teachers": [
+    {
+      "id": "t-1",
+      "name": "Muallim Abdul Hadi",
+      "subject": "Quran Nazra",
+      "phone": "+92 301 1111111",
+      "status": "active"
+    },
+    {
+      "id": "t-2",
+      "name": "Muallimah Ayesha",
+      "subject": "Islamic Studies",
+      "phone": "+92 302 2222222",
+      "status": "active"
+    },
+    {
+      "id": "t-3",
+      "name": "Muallim Bilal",
+      "subject": "Arabic Basics",
+      "phone": "+92 303 3333333",
+      "status": "active"
+    },
+    {
+      "id": "t-d4ea4f74",
+      "name": "huraira",
+      "subject": "alim",
+      "phone": "798789969696",
+      "status": "active"
+    }
+  ],
+  "students": [
+    {
+      "id": "s-1",
+      "name": "Muhammad Hamza",
+      "guardian": "Noman Ahmed",
+      "phone": "+92 311 1010101",
+      "classId": "c-1",
+      "rollNo": "N-101",
+      "status": "active"
+    },
+    {
+      "id": "s-2",
+      "name": "Ali Raza",
+      "guardian": "Raza Ali",
+      "phone": "+92 311 2020202",
+      "classId": "c-1",
+      "rollNo": "N-102",
+      "status": "active"
+    },
+    {
+      "id": "s-3",
+      "name": "Fatima Noor",
+      "guardian": "Sadia Noor",
+      "phone": "+92 311 3030303",
+      "classId": "c-2",
+      "rollNo": "I-201",
+      "status": "active"
+    },
+    {
+      "id": "s-4",
+      "name": "Ahmed Saad",
+      "guardian": "Saad Khan",
+      "phone": "+92 311 4040404",
+      "classId": "c-3",
+      "rollNo": "A-301",
+      "status": "active"
+    }
+  ],
+  "classes": [
+    {
+      "id": "c-1",
+      "name": "Nazra Quran - Batch A",
+      "teacherId": "t-1",
+      "room": "Room 1",
+      "time": "04:00 PM"
+    },
+    {
+      "id": "c-2",
+      "name": "Islamic Studies - Junior",
+      "teacherId": "t-2",
+      "room": "Room 2",
+      "time": "05:00 PM"
+    },
+    {
+      "id": "c-3",
+      "name": "Arabic Basics",
+      "teacherId": "t-3",
+      "room": "Room 3",
+      "time": "06:00 PM"
+    }
+  ],
+  "fees": [
+    {
+      "id": "f-1",
+      "studentId": "s-1",
+      "month": "June 2026",
+      "amount": 2500,
+      "paid": 2500,
+      "status": "paid",
+      "lastPaymentDate": "2026-06-02",
+      "receipts": [
+        {
+          "id": "r-1",
+          "amount": 2500,
+          "date": "2026-06-02",
+          "receivedBy": "organization"
+        }
+      ]
+    },
+    {
+      "id": "f-2",
+      "studentId": "s-2",
+      "month": "June 2026",
+      "amount": 2500,
+      "paid": 1000,
+      "status": "partial",
+      "lastPaymentDate": "2026-06-10",
+      "receipts": [
+        {
+          "id": "r-2",
+          "amount": 1000,
+          "date": "2026-06-10",
+          "receivedBy": "organization"
+        }
+      ]
+    },
+    {
+      "id": "f-3",
+      "studentId": "s-3",
+      "month": "June 2026",
+      "amount": 3000,
+      "paid": 0,
+      "status": "due",
+      "lastPaymentDate": "",
+      "receipts": []
+    },
+    {
+      "id": "f-4",
+      "studentId": "s-4",
+      "month": "June 2026",
+      "amount": 2800,
+      "paid": 2800,
+      "status": "paid",
+      "lastPaymentDate": "2026-06-08",
+      "receipts": [
+        {
+          "id": "r-4",
+          "amount": 2800,
+          "date": "2026-06-08",
+          "receivedBy": "organization"
+        }
+      ]
+    }
+  ],
+  "attendance": [
+    {
+      "id": "a-1",
+      "date": "2026-06-19",
+      "personId": "t-1",
+      "personType": "teacher",
+      "classId": "c-1",
+      "status": "present",
+      "markedBy": "t-1"
+    },
+    {
+      "id": "a-2",
+      "date": "2026-06-19",
+      "personId": "s-1",
+      "personType": "student",
+      "classId": "c-1",
+      "status": "present",
+      "markedBy": "t-1"
+    },
+    {
+      "id": "a-3",
+      "date": "2026-06-19",
+      "personId": "s-2",
+      "personType": "student",
+      "classId": "c-1",
+      "status": "absent",
+      "markedBy": "t-1"
+    }
+  ],
+  "sessions": []
+}

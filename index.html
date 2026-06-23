@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dawat-e-Islami Education Portal</title>
+    <meta name="description" content="Teacher, student, attendance, class, and fee management portal for an education organization.">
+    <meta name="robots" content="index, follow">
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">DI</div>
+          <div>
+            <strong>Dawat-e-Islami</strong>
+            <span>Education Portal</span>
+          </div>
+        </div>
+
+        <nav class="nav-list">
+          <button class="nav-item active" data-view="overview" type="button">Overview</button>
+          <button class="nav-item" data-view="manage" type="button">Manage</button>
+          <button class="nav-item" data-view="teacher" type="button">Teacher Portal</button>
+          <button class="nav-item" data-view="fees" type="button">Fee Portal</button>
+          <button class="nav-item" data-view="records" type="button">Records</button>
+        </nav>
+
+        <div class="login-card">
+          <label for="roleSelect">Demo access</label>
+          <select id="roleSelect">
+            <option value="admin">Organization Admin</option>
+            <option value="teacher">Teacher</option>
+            <option value="student">Student</option>
+          </select>
+          <p id="roleHint">Admin can see organization, teacher, student, attendance, and fee data.</p>
+        </div>
+      </aside>
+
+      <main class="content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Madani Learning Center</p>
+            <h1 id="pageTitle">Organization Dashboard</h1>
+          </div>
+          <div class="top-actions">
+            <span id="todayBadge"></span>
+            <button id="refreshBtn" class="icon-button" type="button" title="Refresh data" aria-label="Refresh data">R</button>
+          </div>
+        </header>
+
+        <section class="view active" id="overviewView" aria-label="Overview">
+          <div class="stats-grid" id="statsGrid"></div>
+          <div class="two-column">
+            <section class="panel">
+              <div class="panel-head">
+                <h2>Class Schedule</h2>
+                <span>Today</span>
+              </div>
+              <div id="classList" class="stack"></div>
+            </section>
+            <section class="panel">
+              <div class="panel-head">
+                <h2>Fee Summary</h2>
+                <span>Live records</span>
+              </div>
+              <div id="feeSummary" class="stack"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="manageView" aria-label="Organization management">
+          <div class="form-grid">
+            <form class="panel data-form" id="teacherForm">
+              <div class="panel-head">
+                <h2>Add Teacher</h2>
+                <span>Organization only</span>
+              </div>
+              <input name="name" type="text" placeholder="Teacher name" required>
+              <input name="subject" type="text" placeholder="Subject" required>
+              <input name="phone" type="tel" placeholder="Phone" required>
+              <button class="primary-button full" type="submit">Add Teacher</button>
+            </form>
+
+            <form class="panel data-form" id="classForm">
+              <div class="panel-head">
+                <h2>Add Class</h2>
+                <span>Assign teacher</span>
+              </div>
+              <input name="name" type="text" placeholder="Class name" required>
+              <select name="teacherId" id="manageClassTeacher" required></select>
+              <input name="room" type="text" placeholder="Room" required>
+              <input name="time" type="text" placeholder="Time, e.g. 04:00 PM" required>
+              <button class="primary-button full" type="submit">Add Class</button>
+            </form>
+
+            <form class="panel data-form" id="studentForm">
+              <div class="panel-head">
+                <h2>Add Student</h2>
+                <span>Enrollment</span>
+              </div>
+              <input name="name" type="text" placeholder="Student name" required>
+              <input name="guardian" type="text" placeholder="Guardian name" required>
+              <input name="phone" type="tel" placeholder="Guardian phone" required>
+              <select name="classId" id="manageStudentClass" required></select>
+              <input name="rollNo" type="text" placeholder="Roll number" required>
+              <button class="primary-button full" type="submit">Add Student</button>
+            </form>
+
+            <form class="panel data-form" id="newFeeForm">
+              <div class="panel-head">
+                <h2>Add Fee Record</h2>
+                <span>Organization only</span>
+              </div>
+              <select name="studentId" id="manageFeeStudent" required></select>
+              <input name="month" type="text" placeholder="Month, e.g. July 2026" required>
+              <input name="amount" type="number" min="1" placeholder="Total fee" required>
+              <input name="paid" type="number" min="0" placeholder="Paid now, optional">
+              <button class="primary-button full" type="submit">Add Fee</button>
+            </form>
+          </div>
+        </section>
+
+        <section class="view" id="teacherView" aria-label="Teacher portal">
+          <div class="toolbar">
+            <select id="teacherSelect"></select>
+            <select id="classSelect"></select>
+            <input id="topicInput" type="text" placeholder="Lesson topic">
+            <button id="beginClassBtn" class="primary-button" type="button">Begin Class</button>
+          </div>
+
+          <div class="two-column">
+            <section class="panel">
+              <div class="panel-head">
+                <h2>Mark Attendance</h2>
+                <span id="activeClassLabel">Select a class</span>
+              </div>
+              <div id="attendanceList" class="attendance-list"></div>
+              <button id="saveAttendanceBtn" class="primary-button full" type="button">Save Attendance</button>
+            </section>
+
+            <section class="panel">
+              <div class="panel-head">
+                <h2>Teacher Attendance</h2>
+                <span>Self record</span>
+              </div>
+              <div id="teacherAttendance" class="stack"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="feesView" aria-label="Fee portal">
+          <div class="toolbar">
+            <input id="feeSearch" type="search" placeholder="Search student or month">
+            <button id="clearFeeSearch" class="secondary-button" type="button">Clear</button>
+          </div>
+          <section class="panel">
+            <div class="panel-head">
+              <h2>Student Fee Records</h2>
+              <span>Payments and dues</span>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Student</th>
+                    <th>Month</th>
+                    <th>Total</th>
+                    <th>Paid</th>
+                    <th>Due</th>
+                    <th>Status</th>
+                    <th>Payment</th>
+                  </tr>
+                </thead>
+                <tbody id="feeTable"></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section class="view" id="recordsView" aria-label="Records">
+          <div class="two-column">
+            <section class="panel">
+              <div class="panel-head">
+                <h2>Teachers</h2>
+                <span>Organization access</span>
+              </div>
+              <div id="teacherRecords" class="stack"></div>
+            </section>
+            <section class="panel">
+              <div class="panel-head">
+                <h2>Students</h2>
+                <span>Class records</span>
+              </div>
+              <div id="studentRecords" class="stack"></div>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="/app.js"></script>
+  </body>
+</html>
