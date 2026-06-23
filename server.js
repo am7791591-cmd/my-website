@@ -307,7 +307,7 @@ const server = http.createServer(async (req, res) => {
     sendJson(res, 500, { error: error.message || "Server error" });
   }
 });
-
 server.listen(PORT, () => {
   console.log(`Madani Education Portal running at http://localhost:${PORT}`);
 });
+module.exports = server;
